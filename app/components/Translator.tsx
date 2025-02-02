@@ -113,7 +113,6 @@ export const Translator = () => {
 
   return (
     <Box>
-      <Box color="black" width={400} height={400}></Box>
       <Box marginTop={12} paddingX={4}>
         <Box maxW="md" overflow="hidden" mx="auto" borderRadius="md">
           <Box bg="pink.900" padding={4} borderBottomWidth={4} borderColor="zinc.300">
