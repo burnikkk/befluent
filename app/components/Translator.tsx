@@ -146,6 +146,7 @@ export const Translator = () => {
               bg={isActive ? 'red-500' : 'red-950'}
               position="relative"
             >
+              <Box></Box>
               <Text srOnly>{isActive ? 'Actively recording' : 'Not actively recording'}</Text>
             </Box>
           </Flex>
