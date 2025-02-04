@@ -2,18 +2,15 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 
-import { Box, Field, Flex, Grid, List, Text } from '@chakra-ui/react';
+import { Box, Circle, Field, Flex, Grid, List, Text } from '@chakra-ui/react';
 
 import { default as countryCodesData } from '@/app/data/country-codes.json';
 import { default as languageCodesData } from '@/app/data/language-codes.json';
-import { useTheme } from '@emotion/react';
 
 const languageCodes: Record<string, string> = languageCodesData;
 const countryCodes: Record<string, string> = countryCodesData;
 
 export const Translator = () => {
-  const theme = useTheme();
-  console.log('colors:', theme);
   const recognitionRef = useRef<SpeechRecognition>();
 
   const [isActive, setIsActive] = useState<boolean>(false);
@@ -133,22 +130,19 @@ export const Translator = () => {
               </List.Root>
             </Box>
           </Box>
-          <Box bg="gray.300" padding={4} borderBottom={4} borderColor="gray.900">
-            <Flex alignItems="center" gap={3}>
-              <Box
-                borderRadius="md"
-                width={5}
-                height={5}
-                flexShrink={0}
-                flexGrow={0}
-                bg={isActive ? 'red-500' : 'red-950'}
-                position="relative"
-              >
-                <Text srOnly>{isActive ? 'Actively recording' : 'Not actively recording'}</Text>
-              </Box>
-            </Flex>
+          <Box bg="gray.500" padding={4} borderBottom={4} borderColor="gray.900">
             <Box bg="gray.600" padding={2} borderBottom={2} borderColor="gray.800">
               <Flex alignItems="center" gap={3}>
+                <Circle
+                  width={5}
+                  height={5}
+                  flexShrink={0}
+                  flexGrow={0}
+                  bg={isActive ? 'red' : 'darkred'}
+                  position="relative"
+                >
+                  <Text srOnly>{isActive ? 'Actively recording' : 'Not actively recording'}</Text>
+                </Circle>
                 <Box
                   borderRadius="md"
                   width="full"
