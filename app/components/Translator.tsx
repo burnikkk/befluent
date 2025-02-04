@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 
-import { Box, Flex, List, Text } from '@chakra-ui/react';
+import { Box, Field, Flex, Grid, List, Text } from '@chakra-ui/react';
 
 import { default as countryCodesData } from '@/app/data/country-codes.json';
 import { default as languageCodesData } from '@/app/data/language-codes.json';
@@ -115,12 +115,12 @@ export const Translator = () => {
     <Box>
       <Box marginTop={12} paddingX={4}>
         <Box maxW="md" overflow="hidden" mx="auto" borderRadius="md">
-          <Box bg="pink.900" padding={4} borderBottomWidth={4} borderColor="zinc.300">
-            <Box bg="red.800" borderRadius="md" padding={2} border={2} borderColor="zinc.50">
+          <Box bg="gray.200" padding={4} borderBottomWidth={4} borderColor="gray.300">
+            <Box bg="blue.200" borderRadius="md" padding={2} border={1} borderColor="gray">
               <List.Root
                 fontFamily="mono"
                 fontWeight="bold"
-                color="zinc.300"
+                color="black.900"
                 textTransform="uppercase"
                 px={4}
                 py={2}
@@ -133,35 +133,78 @@ export const Translator = () => {
               </List.Root>
             </Box>
           </Box>
-        </Box>
-
-        <Box bg="gray.800" padding={4} borderBottom={4} borderColor="zinc.950">
-          <Flex alignItems="center" gap={3}>
-            <Box
-              borderRadius="full"
-              width={5}
-              height={5}
-              flexShrink={0}
-              flexGrow={0}
-              bg={isActive ? 'red-500' : 'red-950'}
-              position="relative"
-            >
-              <Box></Box>
-              <Text srOnly>{isActive ? 'Actively recording' : 'Not actively recording'}</Text>
+          <Box bg="gray.300" padding={4} borderBottom={4} borderColor="gray.900">
+            <Flex alignItems="center" gap={3}>
+              <Box
+                borderRadius="md"
+                width={5}
+                height={5}
+                flexShrink={0}
+                flexGrow={0}
+                bg={isActive ? 'red-500' : 'red-950'}
+                position="relative"
+              >
+                <Text srOnly>{isActive ? 'Actively recording' : 'Not actively recording'}</Text>
+              </Box>
+            </Flex>
+            <Box bg="gray.600" padding={2} borderBottom={2} borderColor="gray.800">
+              <Flex alignItems="center" gap={3}>
+                <Box
+                  borderRadius="md"
+                  width="full"
+                  height={5}
+                  flexGrow={1}
+                  bg={isActive ? 'green.500' : 'green.900'}
+                ></Box>
+                <Text srOnly>
+                  {isSpeechDetected ? 'Speech is being recorded' : 'Speech is not being recorded'}
+                </Text>
+              </Flex>
             </Box>
-          </Flex>
+          </Box>
+
+          <Box bg="gray.800" padding={4}>
+            <Box maxW="md" bg="gray.200" rounded="md" padding={5} mx="auto">
+              <Grid templateColumns={'repeat(2, 1fr)'} gap={4}>
+                <form>
+                  <Field.Root></Field.Root>
+                  {/*<FormControl>*/}
+                  {/*  /!*<FormLabel*!/*/}
+                  {/*  /!*  fontSize="0.6rem"*!/*/}
+                  {/*  /!*  textTransform="uppercase"*!/*/}
+                  {/*  /!*  fontWeight="bold"*!/*/}
+                  {/*  /!*  mb={1}*!/*/}
+                  {/*  /!*  color="black"*!/*/}
+                  {/*  /!*>*!/*/}
+                  {/*  /!*  Language*!/*/}
+                  {/*  /!*</FormLabel>*!/*/}
+                  {/*  /!*<Select*!/*/}
+                  {/*  /!*  w="full"*!/*/}
+                  {/*  /!*  fontSize="0.7rem"*!/*/}
+                  {/*  /!*  border="1px solid"*!/*/}
+                  {/*  /!*  borderColor="zinc.300"*!/*/}
+                  {/*  /!*  px={2}*!/*/}
+                  {/*  /!*  py={1}*!/*/}
+                  {/*  /!*  pr={7}*!/*/}
+                  {/*  /!*  rounded="sm"*!/*/}
+                  {/*  /!*  value={language}*!/*/}
+                  {/*  /!*  onChange={(event) => setLanguage(event.currentTarget.value)}*!/*/}
+                  {/*  /!*>*!/*/}
+                  {/*  /!*  {availableLanguages.map(({ lang, label }) => (*!/*/}
+                  {/*  /!*    <option key={lang} value={lang}>*!/*/}
+                  {/*  /!*      {label} ({lang})*!/*/}
+                  {/*  /!*    </option>*!/*/}
+                  {/*  /!*  ))}*!/*/}
+                  {/*  /!*</Select>*!/*/}
+                  {/*</FormControl>*/}
+                </form>
+              </Grid>
+            </Box>
+          </Box>
         </Box>
       </Box>
     </Box>
-    //       <div className="bg-zinc-800 p-4 border-b-4 border-zinc-950">
-    //         <p className="flex items-center gap-3">
-    //           <span
-    //             className={`block rounded w-full h-5 flex-grow-1 ${isSpeechDetected ? 'bg-green-500' : 'bg-green-900'}`}>
-    //             <span
-    //               className="sr-only">{isSpeechDetected ? 'Speech is being recorded' : 'Speech is not being recorded'}</span>
-    //           </span>
-    //         </p>
-    //       </div>
+
     //
     //       <div className="bg-zinc-800 p-4">
     //         <div className="grid sm:grid-cols-2 gap-4 max-w-lg bg-zinc-200 rounded-lg p-5 mx-auto">
