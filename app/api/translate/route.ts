@@ -1,7 +1,10 @@
-import OpenAI from 'openai';
 import { NextResponse } from 'next/server';
+import OpenAI from 'openai';
 
-const openai = new OpenAI({ apiKey: "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" });
+const openai = new OpenAI({
+  apiKey:
+    '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',
+});
 
 export async function POST(request: Request) {
   try {
@@ -13,8 +16,8 @@ export async function POST(request: Request) {
       model: 'gpt-4o-mini',
       messages: [
         {
-          'role': 'system',
-          'content': `
+          role: 'system',
+          content: `
           You will be provided with a sentence. Your tasks are to:
           - Detect what language the sentence is in
           - Translate the sentence into ${language}
@@ -22,8 +25,8 @@ export async function POST(request: Request) {
         `,
         },
         {
-          'role': 'user',
-          'content': text,
+          role: 'user',
+          content: text,
         },
       ],
       temperature: 0.7,
@@ -37,10 +40,13 @@ export async function POST(request: Request) {
   } catch (error) {
     console.error('Error handling POST request:', error);
 
-    return NextResponse.json({
-      message: 'Error processing request',
-      // error,
-    }, { status: 400 });
+    return NextResponse.json(
+      {
+        message: 'Error processing request',
+        // error,
+      },
+      { status: 400 },
+    );
   }
 }
 
