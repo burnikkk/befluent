@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { useAvailableLanguages } from '@/app/components/hooks/useAvailableLanguage';
+import { useAvailableLanguages } from '@/app/hooks/useAvailableLanguage';
 
 export const useActiveLanguage = () => {
   const { availableLanguages } = useAvailableLanguages();

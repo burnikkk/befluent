@@ -1,11 +1,13 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 
 import { Box, Circle, Field, Flex, Grid, List, Text } from '@chakra-ui/react';
 
-import { useActiveLanguage } from '@/app/components/hooks/useActiveLanguage';
-import { useAvailableLanguages } from '@/app/components/hooks/useAvailableLanguage';
+import { SpeakResult } from '@/app/components/Modal/toResult';
+import { HandleOnRecord } from '@/app/components/Modal/toSpeak';
+import { useActiveLanguage } from '@/app/hooks/useActiveLanguage';
+import { useAvailableLanguages } from '@/app/hooks/useAvailableLanguage';
 import {
   SelectContent,
   SelectItem,
@@ -14,10 +16,9 @@ import {
   SelectValueText,
 } from '@/components/ui/select';
 
-import HandleOnRecord from './Modal/ToSpeak';
-
 export const Translator = () => {
-  const isSpeechDetected = false;
+  const [isActive, setIsActive] = useState(false);
+  console.log('Translator:', isActive);
   const { availableLanguages, languageOptions } = useAvailableLanguages();
   const { activeLanguage, languageList, setLanguageList } = useActiveLanguage();
 
@@ -44,7 +45,6 @@ export const Translator = () => {
             </Box>
           </Box>
           <Box bg="gray.600" padding={4} borderBottomWidth={4} borderColor="gray.900">
-            {<HandleOnRecord />}
             <Flex alignItems="center" gap={3}>
               <Circle
                 width={5}
@@ -53,9 +53,7 @@ export const Translator = () => {
                 flexGrow={0}
                 bg={isActive ? 'red' : 'darkred'}
                 position="relative"
-              >
-                <Text>{isActive ? 'Actively recording' : 'Not actively recording'}</Text>
-              </Circle>
+              ></Circle>
               <Box
                 borderRadius="md"
                 width="full"
@@ -63,9 +61,7 @@ export const Translator = () => {
                 flexGrow={1}
                 bg={isActive ? 'green.500' : 'green.900'}
               ></Box>
-              <Text srOnly>
-                {isSpeechDetected ? 'Speech is being recorded' : 'Speech is not being recorded'}
-              </Text>
+              <Text>{isActive ? 'Actively recording' : 'Not actively recording'}</Text>
             </Flex>
           </Box>
 
@@ -113,9 +109,11 @@ export const Translator = () => {
                     </SelectRoot>
                   </Field.Root>
                 </form>
+                <HandleOnRecord isActive={isActive} setIsActive={setIsActive} />
               </Grid>
             </Box>
           </Box>
+          <SpeakResult setIsActive={setIsActive} />
         </Box>
       </Box>
     </Box>

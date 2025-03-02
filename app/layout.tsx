@@ -1,10 +1,7 @@
-import { Provider } from '@/app/components/ui/Provider';
+import { Providers } from '@/app/providers';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 
 import './globals.css';
-
-const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Translator',
@@ -19,7 +16,7 @@ export default function RootLayout({
   return (
     <html>
       <body>
-        <Provider>{children}</Provider>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

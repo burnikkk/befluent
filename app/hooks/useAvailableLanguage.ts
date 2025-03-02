@@ -1,7 +1,7 @@
 import { createListCollection } from '@chakra-ui/react';
 
-import { toLang } from '@/app/components/Modal/ToLang';
-import { useVoices } from '@/app/components/hooks/useVoices';
+import { toLang } from '@/app/components/Modal/toLang';
+import { useVoices } from '@/app/hooks/useVoices';
 
 type LangFullValue = { lang: string; label: string; dialect: string };
 
