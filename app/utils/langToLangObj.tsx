@@ -6,7 +6,7 @@ const countryCodes: Record<string, string> = countryCodesData;
 
 type LangFullValue = { lang: string; label: string; dialect: string };
 
-export const toLang = (lang: string): LangFullValue => {
+export const langToLangObj = (lang: string): LangFullValue => {
   const [languageCode, countryCode] = lang.split('-');
 
   return {
