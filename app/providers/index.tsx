@@ -1,13 +1,14 @@
+'use client';
+
 import { FC, PropsWithChildren } from 'react';
 
-import { ChakraProvider, defaultSystem } from '@chakra-ui/react';
-
-import { RecorderProvider } from '@/app/providers/Recorder_svoi';
+import { RecorderProvider } from '@/app/providers/Recorder';
+import { Provider } from '@/components/ui/provider';
 
 export const Providers: FC<PropsWithChildren> = ({ children }) => {
   return (
-    <ChakraProvider value={defaultSystem}>
+    <Provider>
       <RecorderProvider>{children}</RecorderProvider>
-    </ChakraProvider>
+    </Provider>
   );
 };

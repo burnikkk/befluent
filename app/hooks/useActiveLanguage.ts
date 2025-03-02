@@ -5,6 +5,7 @@ import { useAvailableLanguages } from '@/app/hooks/useAvailableLanguage';
 export const useActiveLanguage = () => {
   const { availableLanguages } = useAvailableLanguages();
   const [languageList, setLanguageList] = useState<string[]>(['pt-BR']);
+  console.log('availableLanguages', availableLanguages);
 
   const activeLanguage = availableLanguages.find(({ lang }) => languageList.includes(lang));
   return { activeLanguage, languageList, setLanguageList };

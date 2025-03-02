@@ -4,10 +4,11 @@ import React, { useState } from 'react';
 
 import { Box, Circle, Field, Flex, Grid, List, Text } from '@chakra-ui/react';
 
-import { SpeakResult } from '@/app/components/Modal/toResult';
-import { HandleOnRecord } from '@/app/components/Modal/toSpeak';
+import { RecordButton } from '@/app/components/RecordButton';
+import { SpeakResult } from '@/app/components/SpeakResult';
 import { useActiveLanguage } from '@/app/hooks/useActiveLanguage';
 import { useAvailableLanguages } from '@/app/hooks/useAvailableLanguage';
+import { useRecorder } from '@/app/providers/Recorder';
 import {
   SelectContent,
   SelectItem,
@@ -17,10 +18,10 @@ import {
 } from '@/components/ui/select';
 
 export const Translator = () => {
-  const [isActive, setIsActive] = useState(false);
-  console.log('Translator:', isActive);
+  const { isActive } = useRecorder();
   const { availableLanguages, languageOptions } = useAvailableLanguages();
   const { activeLanguage, languageList, setLanguageList } = useActiveLanguage();
+  console.log('languageOptions', languageOptions);
 
   return (
     <Box>
@@ -109,11 +110,11 @@ export const Translator = () => {
                     </SelectRoot>
                   </Field.Root>
                 </form>
-                <HandleOnRecord isActive={isActive} setIsActive={setIsActive} />
+                <RecordButton />
               </Grid>
             </Box>
           </Box>
-          <SpeakResult setIsActive={setIsActive} />
+          <SpeakResult />
         </Box>
       </Box>
     </Box>
