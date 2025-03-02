@@ -1,13 +1,13 @@
 import { FC, PropsWithChildren } from 'react';
 
-import { ChakraProvider } from '@chakra-ui/react';
+import { ChakraProvider, defaultSystem } from '@chakra-ui/react';
 
-import { VideoRecorderProvider } from '@/app/providers/Recorder';
+import { RecorderProvider } from '@/app/providers/Recorder_svoi';
 
 export const Providers: FC<PropsWithChildren> = ({ children }) => {
   return (
-    <ChakraProvider>
-      <VideoRecorderProvider>{children}</VideoRecorderProvider>
+    <ChakraProvider value={defaultSystem}>
+      <RecorderProvider>{children}</RecorderProvider>
     </ChakraProvider>
   );
 };

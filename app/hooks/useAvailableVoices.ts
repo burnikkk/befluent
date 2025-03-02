@@ -1,5 +1,5 @@
-import { useActiveLanguage } from '@/app/components/hooks/useActiveLanguage';
-import { useVoices } from '@/app/components/hooks/useVoices';
+import { useActiveLanguage } from '@/app/hooks/useActiveLanguage';
+import { useVoices } from '@/app/hooks/useVoices';
 
 export const useAvailableVoices = () => {
   const voices = useVoices();
