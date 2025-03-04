@@ -1,3 +1,5 @@
+'use client';
+
 import { useAvailableVoices } from '@/app/hooks/useAvailableVoices';
 
 export const useSpeak = () => {

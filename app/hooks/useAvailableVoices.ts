@@ -1,3 +1,5 @@
+'use client';
+
 import { useActiveLanguage } from '@/app/hooks/useActiveLanguage';
 import { useVoices } from '@/app/hooks/useVoices';
 

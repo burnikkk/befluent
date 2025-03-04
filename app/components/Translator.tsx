@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 
 import { Box, Circle, Field, Flex, Grid, List, Text } from '@chakra-ui/react';
 
@@ -18,13 +18,11 @@ import {
 } from '@/components/ui/select';
 
 export const Translator = () => {
-  const { isActive } = useRecorder();
   const { availableLanguages, languageOptions } = useAvailableLanguages();
   const { activeLanguage, languageList, setLanguageList } = useActiveLanguage();
-  console.log('languageOptions', languageOptions);
-
+  const { isActive } = useRecorder();
   return (
-    <Box>
+    <Box bg="gray.100">
       <Box marginTop={12} paddingX={4}>
         <Box maxW="md" overflow="hidden" mx="auto" borderRadius="md">
           <Box bg="gray.200" padding={4} borderBottomWidth={4} borderColor="gray.300">

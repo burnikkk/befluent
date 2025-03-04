@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useState } from 'react';
 
 export const useVoices = () => {
@@ -13,7 +15,6 @@ export const useVoices = () => {
 
     updateVoices();
     setTimeout(updateVoices, 100);
-
     window.speechSynthesis.onvoiceschanged = updateVoices;
 
     return () => {

@@ -23,52 +23,49 @@ export const RecorderProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   const [translation, setTranslation] = useState('');
   const [isActive, setIsActive] = useState(false);
 
-  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-
-  const recognitionRef = useRef<SpeechRecognition>(new SpeechRecognition());
+  const recognitionRef = useRef<SpeechRecognition>();
 
   useEffect(() => {
-    if (!SpeechRecognition) {
-      console.error('Speech Recognition is not supported in this browser.');
+    if (!window) {
       return;
     }
-
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    recognitionRef.current = new SpeechRecognition();
     const recognition = recognitionRef.current;
 
-    recognition.continuous = false;
-    recognition.lang = 'ru-RU';
+    recognition.onstart = function () {
+      setIsActive(true);
+    };
 
-    const handleEnd = () => setIsActive(false);
-    const handleResult = async (event: SpeechRecognitionEvent) => {
-      console.log('handleResult', event);
+    recognition.onend = function () {
+      setIsActive(false);
+    };
+
+    recognition.onresult = async function (event: SpeechRecognitionEvent) {
       const transcript = event.results[0][0].transcript;
       setText(transcript);
+      console.log('transcription ', transcript);
 
-      const response = await fetch('/api/translate', {
+      const results = await fetch('/api/translate', {
         method: 'POST',
         body: JSON.stringify({ text: transcript, language: languageList }),
-      });
-      const results = await response.json();
+      }).then((r) => r.json());
 
       setTranslation(results.text);
       speak(results.text);
-    };
+      console.log(results);
 
-    recognition.onend = handleEnd;
-    recognition.onresult = handleResult;
-
-    return () => {
-      recognition.onend = null;
-      recognition.onresult = null;
+      return () => {
+        recognition.stop();
+      };
     };
-  }, [SpeechRecognition, languageList, speak]);
+  }, [languageList, speak]);
 
   const start = () => {
-    setIsActive(true);
     recognitionRef.current?.start();
   };
+
   const stop = () => {
-    setIsActive(false);
     recognitionRef.current?.stop();
   };
 
