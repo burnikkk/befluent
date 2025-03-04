@@ -2,13 +2,17 @@
 
 import { FC, PropsWithChildren } from 'react';
 
+//import { LightMode } from '@/components/ui/color-mode';
+import { ChakraProvider, defaultSystem } from '@chakra-ui/react';
+
 import { RecorderProvider } from '@/app/providers/Recorder';
-import { Provider } from '@/components/ui/provider';
 
 export const Providers: FC<PropsWithChildren> = ({ children }) => {
   return (
-    <Provider>
+    //  <LightMode>
+    <ChakraProvider value={defaultSystem}>
       <RecorderProvider>{children}</RecorderProvider>
-    </Provider>
+    </ChakraProvider>
+    //   </LightMode>
   );
 };

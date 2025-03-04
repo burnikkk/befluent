@@ -12,7 +12,6 @@ export const useAvailableLanguages = () => {
   const byASC = (a: LangFullValue, b: LangFullValue) => a.label.localeCompare(b.label);
 
   const availableLanguages = languageSet.map(langToLangObj).sort(byASC);
-
   const languageOptions = createListCollection({
     items: availableLanguages.map((lang) => ({ label: lang.label, value: lang.lang })),
   });

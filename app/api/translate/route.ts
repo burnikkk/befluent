@@ -9,7 +9,6 @@ const openai = new OpenAI({
 export async function POST(request: Request) {
   try {
     const { language, text } = await request.json();
-
     const response = await openai.chat.completions.create({
       model: 'gpt-4o-mini',
       messages: [
