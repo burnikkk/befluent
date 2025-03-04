@@ -1,6 +1,6 @@
 import { Box, Text } from '@chakra-ui/react';
 
-import { useRecorder } from '@/app/providers/Recorder';
+import { useRecorder } from '@/app/hooks/useRecorder';
 
 export const SpeakResult = () => {
   const { text, translation } = useRecorder();

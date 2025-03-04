@@ -8,7 +8,7 @@ import { RecordButton } from '@/app/components/RecordButton';
 import { SpeakResult } from '@/app/components/SpeakResult';
 import { useActiveLanguage } from '@/app/hooks/useActiveLanguage';
 import { useAvailableLanguages } from '@/app/hooks/useAvailableLanguage';
-import { useRecorder } from '@/app/providers/Recorder';
+import { useRecorder } from '@/app/hooks/useRecorder';
 import {
   SelectContent,
   SelectItem,

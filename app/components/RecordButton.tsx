@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Box, Button } from '@chakra-ui/react';
 
-import { useRecorder } from '@/app/providers/Recorder';
+import { useRecorder } from '@/app/hooks/useRecorder';
 
 export const RecordButton = () => {
   const { isActive, start, stop } = useRecorder();
