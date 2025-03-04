@@ -1,21 +1,12 @@
 'use client';
 
-import React, { createContext, useContext, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
+import { createContextHook } from '@/app/hooks/createContextHook';
 import { useActiveLanguage } from '@/app/hooks/useActiveLanguage';
 import { useSpeak } from '@/app/hooks/useSpeak';
 
-interface RecorderContext {
-  isActive: boolean;
-  text: string;
-  translation: string;
-  start: () => void;
-  stop: () => void;
-}
-
-const RecorderProviderContext = createContext<RecorderContext | undefined>(undefined);
-
-export const RecorderProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const useRecorder = createContextHook(() => {
   const { languageList } = useActiveLanguage();
   const speak = useSpeak();
 
@@ -69,17 +60,5 @@ export const RecorderProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     recognitionRef.current?.stop();
   };
 
-  return (
-    <RecorderProviderContext.Provider value={{ text, translation, isActive, start, stop }}>
-      {children}
-    </RecorderProviderContext.Provider>
-  );
-};
-
-export const useRecorder = () => {
-  const context = useContext(RecorderProviderContext);
-  if (!context) {
-    throw new Error('useRecorder must be used within a RecorderProvider');
-  }
-  return context;
-};
+  return { text, translation, isActive, start, stop };
+});
