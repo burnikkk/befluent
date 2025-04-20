@@ -5,6 +5,7 @@
 :root {
     --foreground-rgb: 0, 0, 0;
     --background-rgb: 255, 255, 255;
+    color-scheme: light;
 }
 
 @media (prefers-color-scheme: light) {
@@ -16,8 +17,8 @@
 
 html,
 body {
-    color: rgb(var(--foreground-rgb));
-    background-color: rgb(var(--background-rgb));
+    color: black;
+    background-color: white;
 }
 
 
