@@ -19,11 +19,11 @@ import {
 
 export const Translator = () => {
   const { availableLanguages, languageOptions } = useAvailableLanguages();
-  const { activeLanguage, languageList, setLanguageList } = useActiveLanguage();
+  const { activeLanguage, selectedLanguage, setSelectedLanguage } = useActiveLanguage();
   const { isActive } = useRecorder();
   return (
-    <Box bg="gray.100">
-      <Box marginTop={12} paddingX={4}>
+    <Box overflow="hidden">
+      <Box paddingTop={12} paddingX={4}>
         <Box maxW="md" overflow="hidden" mx="auto" borderRadius="md">
           <Box bg="gray.200" padding={4} borderBottomWidth={4} borderColor="gray.300">
             <Box bg="blue.200" borderRadius="md" padding={2} border={1} borderColor="gray">
@@ -81,8 +81,8 @@ export const Translator = () => {
                     <SelectRoot
                       size="xs"
                       collection={languageOptions}
-                      value={languageList}
-                      onValueChange={(event) => setLanguageList(event.value)}
+                      value={[selectedLanguage]}
+                      onValueChange={(event) => setSelectedLanguage(event.value[0])}
                     >
                       <SelectTrigger
                         borderColor="gray.300"

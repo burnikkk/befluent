@@ -7,7 +7,7 @@ import { useActiveLanguage } from '@/app/hooks/useActiveLanguage';
 import { useSpeak } from '@/app/hooks/useSpeak';
 
 export const useRecorder = createContextHook(() => {
-  const { languageList } = useActiveLanguage();
+  const { selectedLanguage } = useActiveLanguage();
   const speak = useSpeak();
 
   const [text, setText] = useState('');
@@ -39,7 +39,7 @@ export const useRecorder = createContextHook(() => {
 
       const results = await fetch('/api/translate', {
         method: 'POST',
-        body: JSON.stringify({ text: transcript, language: languageList }),
+        body: JSON.stringify({ text: transcript, language: selectedLanguage }),
       }).then((r) => r.json());
 
       setTranslation(results.text);
@@ -50,7 +50,7 @@ export const useRecorder = createContextHook(() => {
         recognition.stop();
       };
     };
-  }, [languageList, speak]);
+  }, [selectedLanguage, speak]);
 
   const start = () => {
     recognitionRef.current?.start();

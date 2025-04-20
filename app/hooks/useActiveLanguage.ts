@@ -1,11 +1,12 @@
 import { useState } from 'react';
 
+import { createContextHook } from '@/app/hooks/createContextHook';
 import { useAvailableLanguages } from '@/app/hooks/useAvailableLanguage';
 
-export const useActiveLanguage = () => {
+export const useActiveLanguage = createContextHook(() => {
   const { availableLanguages } = useAvailableLanguages();
-  const [languageList, setLanguageList] = useState<string[]>(['pt-BR']);
+  const [selectedLanguage, setSelectedLanguage] = useState<string>('pt-BR');
 
-  const activeLanguage = availableLanguages.find(({ lang }) => languageList.includes(lang));
-  return { activeLanguage, languageList, setLanguageList };
-};
+  const activeLanguage = availableLanguages.find(({ lang }) => selectedLanguage.includes(lang));
+  return { activeLanguage, selectedLanguage, setSelectedLanguage };
+});
