@@ -5,11 +5,11 @@ import { useVoices } from '@/app/hooks/useVoices';
 
 export const useAvailableVoices = () => {
   const voices = useVoices();
-  const { languageList } = useActiveLanguage();
+  const { selectedLanguage } = useActiveLanguage();
 
   const availableVoices = voices?.filter(
     ({ lang, voiceURI }) =>
-      languageList.includes(lang) && !voiceURI.toLowerCase().includes('microsoft'),
+      selectedLanguage === lang && !voiceURI.toLowerCase().includes('microsoft'),
   );
   const activeVoice =
     availableVoices?.find(({ name }) => name.includes('Google')) || availableVoices?.[0];
