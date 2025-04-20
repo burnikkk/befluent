@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { Providers } from '@/app/providers';
 import type { Metadata } from 'next';
 
